@@ -1,7 +1,7 @@
 #include "DangerZone.h"
 #include "Player.h"
 #include "GameState.h"
-
+#include <fstream>
 
 DangerZone::DangerZone(const CellPosition & dangerZonePosition): GameObject(dangerZonePosition)
 {
@@ -35,6 +35,18 @@ GameObject * DangerZone::Clone() const
 {
     return new DangerZone(position);
 }
+
+int DangerZone::GetType() const
+{
+    return 3;
+}
+
+void DangerZone::Save(ofstream& OutFile)
+{
+    OutFile << this->GetPosition().GetCellNum() << endl;
+}
+
+
 
 DangerZone::~DangerZone()
 {

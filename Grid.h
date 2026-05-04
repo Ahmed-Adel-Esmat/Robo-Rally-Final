@@ -47,7 +47,7 @@ public:
 	bool AddObjectToCell(GameObject* pNewObject);        // Adds object to its cell; returns false if cell is occupied
 	void RemoveObjectFromCell(const CellPosition& pos); // Removes the GameObject of the Cell of the passed "position"
 	                                                     // Note: You may need to change the return type of this function (Think)
-
+	void ClearAllObjects();
 	void UpdatePlayerCell(Player* player, const CellPosition& newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and Draws it in the new cell
@@ -79,6 +79,9 @@ public:
 	void PrintErrorMessage(string msg); // Shows msg on the status bar, waits for a click, then clears it
 	Cell* GetCell(const CellPosition& pos) const;
 	void SaveAll(ofstream& OutFile, int type);
+
+
+	void ClearGameObjects();
 
 	~Grid();
 };

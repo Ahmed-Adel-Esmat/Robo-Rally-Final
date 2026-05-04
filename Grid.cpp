@@ -1,10 +1,12 @@
 #include "Grid.h"
-
+#include "Flag.h"
+#include "Belt.h"
+#include "RotatingGear.h"
 #include "Cell.h"
 #include "GameObject.h"
-#include "Belt.h"
 #include "Player.h"
 #include "GameState.h"
+#include <fstream>
 
 Grid::Grid(Input* pIn, Output* pOut) : pIn(pIn), pOut(pOut)
 {
@@ -128,20 +130,60 @@ Cell* Grid::GetCell(const CellPosition& pos) const
 {
 	return CellList[pos.VCell()][pos.HCell()];
 }
+
+
+
 void Grid::SaveAll(ofstream& OutFile, int type)
 {
+	int count = 0;
 
-	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	for (int i = 0; i < NumVerticalCells; i++)
 	{
 		for (int j = 0; j < NumHorizontalCells; j++)
 		{
-
 			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj != NULL && pObj->GetType() == type)
+				count++;
+		}
+	}
 
-			if (pObj != nullptr)
+	OutFile << count << endl;
+
+	for (int i = 0; i < NumVerticalCells; i++)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj != NULL && pObj->GetType() == type)
 			{
+				pObj->Save(OutFile);   
+			}
+		}
+	}
+}
 
-				pObj->Save(OutFile);
+
+void Grid::ClearAllObjects() {
+	for (int r = 0; r < 5; r++) {       
+		for (int c = 0; c < 11; c++) {   
+			RemoveObjectFromCell(CellPosition(r, c));
+		}
+	}
+}
+
+
+
+void Grid::ClearGameObjects()
+{
+	for (int i = 0; i < NumVerticalCells; i++)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj != NULL)
+			{
+				delete pObj;
+				CellList[i][j]->SetGameObject(NULL);
 			}
 		}
 	}

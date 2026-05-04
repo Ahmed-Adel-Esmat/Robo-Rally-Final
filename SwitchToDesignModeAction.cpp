@@ -26,6 +26,8 @@ void SwitchToDesignModeAction::Execute()
 	pManager->UpdateInterface();
 
 	///TODO: Add any cleanup needed when leaving Play Mode.
+	pOut->ClearStatusBar();
+	pOut->PrintMessage("Switched to Design Mode. Ready to edit.");
 }
 
 SwitchToDesignModeAction::~SwitchToDesignModeAction()

@@ -1,6 +1,8 @@
 #include "WaterPit.h"
 #include "Player.h"       
 #include "GameState.h"
+using namespace std;
+#include <fstream>
 
 
 WaterPit::WaterPit(const CellPosition & waterPitPosition):GameObject(waterPitPosition)
@@ -35,13 +37,22 @@ void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
     pGrid->UpdateInterface(pState);
 }
 
+void WaterPit::Save(ofstream& OutFile)
+{
+
+        OutFile << this->GetPosition().GetCellNum() << endl;
+    
+}
+
 GameObject * WaterPit::Clone() const
 {
     return new WaterPit(position);
 }
 int WaterPit::GetType() const {
-    return 3;
+    return 2;
 }
+
+
 
 
 WaterPit::~WaterPit()

@@ -20,7 +20,7 @@ void Input::GetPointClicked(int& x, int& y) const
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
-string Input::GetSrting(Output* pO) const
+string Input::GetString(Output* pO) const
 {
 	string Label;
 	char Key;
@@ -47,7 +47,7 @@ int Input::GetInteger(Output* pO) const
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
-	string s = GetSrting(pO);
+	string s = GetString(pO);
 	if (s == "" || s.find_first_not_of(' ') == string::npos)
 	{
 		return -1;

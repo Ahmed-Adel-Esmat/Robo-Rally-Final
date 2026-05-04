@@ -47,7 +47,7 @@ void Belt::Save(ofstream& OutFile)
 	OutFile << position.GetCellNum() << " " << endCellPos.GetCellNum() << endl;
 }
 int Belt::GetType() const {
-	return 2;
+	return 4;
 }
 
 

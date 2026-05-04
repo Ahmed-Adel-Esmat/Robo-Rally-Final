@@ -13,6 +13,14 @@
 #include "CopyAction.h"
 #include "CutAction.h"
 #include "PasteAction.h"
+#include "SelectCommandAction.h"
+#include "ExecuteCommandsAction.h"
+#include "RebootRepairAction.h"
+#include "NewGameAction.h"
+#include "ExitAction.h"
+#include "DeleteGameObjectAction.h"
+#include "LoadGridAction.h"
+
 
 ApplicationManager::ApplicationManager()
 {
@@ -92,6 +100,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case EXIT:
+		pAct = new ExitAction(this);
 		break;
 	
 	case SAVE_GRID:
@@ -113,6 +122,26 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case TO_DESIGN_MODE:
 		pAct = new SwitchToDesignModeAction(this);
 		break;
+	case SELECT_COMMAND:
+		pAct = new SelectCommandAction(this);
+		break;
+	case EXECUTE_COMMANDS:
+		pAct = new ExecuteCommandsAction(this);
+		break;
+	case REBOOT_REPAIR:
+		pAct = new RebootRepairAction(this);
+		break;
+	case NEW_GAME:
+		pAct = new NewGameAction(this);
+		break;
+	case DEL_ITEM:
+		pAct = new DeleteGameObjectAction(this);
+		break;
+	case LOAD_GRID:
+		pAct = new LoadGridAction(this);
+		break;
+	
+	
 
 	///TODO: Add a case for EACH remaining Play Mode action type
 	case STATUS:	// a click on the status bar ==> no action

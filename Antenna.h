@@ -8,6 +8,8 @@ public:
 
 	virtual void Apply(Grid* pGrid, GameState* pState, Player* pPlayer); // Applies the effect of the antenna
 	virtual GameObject* Clone() const;
+	virtual int GetType() const;
+	virtual void Save(ofstream& OutFile);
 	
 
 	virtual ~Antenna();

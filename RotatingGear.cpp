@@ -67,7 +67,7 @@ void RotatingGear::Save(ofstream& OutFile)
     OutFile << position.GetCellNum() << " " << isClockWise << endl;
 }
 int RotatingGear::GetType() const {
-    return 4;
+    return 7;
 }
 
 RotatingGear::~RotatingGear()

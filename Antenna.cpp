@@ -2,7 +2,7 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Grid.h"
-
+#include <fstream>
 
 
 
@@ -59,6 +59,15 @@ GameObject * Antenna::Clone() const
 {
 	return new Antenna(position);
 }
+void Antenna::Save(ofstream& OutFile)
+{
+	OutFile << this->GetPosition().GetCellNum() << endl;
+}
+
+int Antenna::GetType() const {
+	return 6;
+}
+
 Antenna::~Antenna()
 {
 }

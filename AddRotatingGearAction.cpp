@@ -20,7 +20,7 @@ void AddRotatingGearAction::ReadActionParameters()
 	gearPos = pIn->GetCellClicked();
 	// 3- Read whether the direction will be clockwise or not
 	pOut->PrintMessage("Is the gear clockwise? (y/n) ...");
-	string direction = pIn->GetSrting(pOut);
+	string direction = pIn->GetString(pOut);
 	if (direction == "y" || direction == "Y") {
 		clockwise = true;
 	}

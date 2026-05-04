@@ -30,6 +30,9 @@ void SwitchToPlayModeAction::Execute()
 	pManager->UpdateInterface();
 
 	///TODO: Add any other initialisation needed when entering Play Mode.
+		pOut->ClearStatusBar();
+		pOut->PrintMessage("Switched to Play Mode. Ready to play.");
+		
 }
 
 SwitchToPlayModeAction::~SwitchToPlayModeAction()
