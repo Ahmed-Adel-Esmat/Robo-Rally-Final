@@ -56,6 +56,8 @@ Command Player::GetSavedCommand(int index) const
 void Player::Draw(Output* pOut) const
 {
 	color playerColor = UI.PlayerColors[playerNum];
+	CellPosition playerpos = pCell->GetCellPosition();
+	pOut->DrawPlayer(playerpos, playerNum, playerColor, currDirection);        // done
 
 	///TODO: Call the appropriate Output function to draw the player token with playerColor
 }
@@ -81,8 +83,26 @@ void Player::Move(Grid* pGrid, GameState* pState)
 
 void Player::AppendPlayerInfo(string& playersInfo) const
 {
-	// TODO: Modify the Info as needed
+	string dir;
+	if (currDirection == UP)
+	{
+		dir = "up";
+	}
+	else if (currDirection == DOWN)
+	{
+		dir = "down";
+	}
+	else if (currDirection == LEFT)
+	{
+		dir = "left";
+	}
+	else
+		dir = "right";
+
+
+
+	// TODO: Modify the Info as needed                         // done 
 	playersInfo += "P" + to_string(playerNum) + "(";
-	playersInfo += to_string(currDirection) + ", ";
+	playersInfo += dir + ", ";                // 3mlt kda 3shan tban puum(dir,health) w shlt el adem 34an kan enum (currdirection)
 	playersInfo += to_string(health) + ")";
 }

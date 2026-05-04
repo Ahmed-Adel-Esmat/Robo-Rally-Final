@@ -39,6 +39,10 @@ GameObject * WaterPit::Clone() const
 {
     return new WaterPit(position);
 }
+int WaterPit::GetType() const {
+    return 3;
+}
+
 
 WaterPit::~WaterPit()
 {

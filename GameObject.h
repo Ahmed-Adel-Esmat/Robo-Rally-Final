@@ -33,7 +33,7 @@ public:
 	// Save / Load (uncomment and implement in derived classes when needed):
 	// virtual void Save(ofstream& OutFile) = 0;
 	// virtual void Load(ifstream& Infile)  = 0;
-	
-
+	virtual void Save(ofstream& outfile) = 0;
+	virtual int GetType() const = 0;
 	virtual ~GameObject();
 };

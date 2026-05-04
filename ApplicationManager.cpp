@@ -1,5 +1,5 @@
 #include "ApplicationManager.h"
-
+#include "SaveGridAction.h" 
 #include "Grid.h"
 
 #include "AddBeltAction.h"
@@ -93,7 +93,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case EXIT:
 		break;
-
+	
+	case SAVE_GRID:
+		pAct = new SaveGridAction(this);
+		break;
 	///TODO: Add a case for EACH remaining Design Mode action type
 	//
 	case COPY_ITEM:

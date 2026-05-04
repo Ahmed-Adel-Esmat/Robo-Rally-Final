@@ -78,6 +78,7 @@ public:
 
 	void PrintErrorMessage(string msg); // Shows msg on the status bar, waits for a click, then clears it
 	Cell* GetCell(const CellPosition& pos) const;
+	void SaveAll(ofstream& OutFile, int type);
 
 	~Grid();
 };

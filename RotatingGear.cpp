@@ -1,7 +1,9 @@
 #include "RotatingGear.h"
 #include "Player.h"        
-#include "GameState.h"    
-
+#include "GameState.h"  
+#include <iostream>
+using namespace std;
+#include <fstream>
 
 
 
@@ -59,6 +61,13 @@ bool RotatingGear::GetisClockWise() const
 GameObject * RotatingGear::Clone() const
 {
     return new RotatingGear(position, isClockWise); 
+}
+void RotatingGear::Save(ofstream& OutFile)
+{
+    OutFile << position.GetCellNum() << " " << isClockWise << endl;
+}
+int RotatingGear::GetType() const {
+    return 4;
 }
 
 RotatingGear::~RotatingGear()

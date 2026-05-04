@@ -1,5 +1,6 @@
 #pragma once
 #include"GameObject.h"
+
 class Belt: public GameObject
 {
 	// Note: the "position" data member inherited from the GameObject class is used as the belt's "Start Cell Position"
@@ -13,6 +14,8 @@ public:
 
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
 	virtual GameObject* Clone() const;
+	virtual void Save(ofstream& OutFile);
+	virtual int GetType() const;
 	
 	virtual ~Belt();
 };
