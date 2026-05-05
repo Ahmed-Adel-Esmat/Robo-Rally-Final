@@ -1,0 +1,18 @@
+#pragma once
+#include "Action.h"
+#include "Input.h"
+#include "Output.h"
+#include "DangerZone.h"
+
+class AddDangerZoneAction : public Action
+{
+	CellPosition dangerZonePos;
+
+public:
+	AddDangerZoneAction(ApplicationManager* pApp);
+
+	virtual void ReadActionParameters();
+	virtual void Execute();
+
+	virtual ~AddDangerZoneAction();
+};

@@ -111,6 +111,21 @@ void Grid::UpdateInterface(const GameState* pState) const
 	{
 		// Print the players info bar on the right side of the toolbar.
 		// GameState builds the string because it owns the player data.
+		for (int i = NumVerticalCells - 1; i >= 0; i--)
+		{
+			for (int j = 0; j < NumHorizontalCells; j++)
+			{
+				CellList[i][j]->DrawCellOrWaterPitOrDangerZone(pOut);
+			}
+		}
+		for (int i = NumVerticalCells - 1; i >= 0; i--)
+		{
+			for (int j = 0; j < NumHorizontalCells; j++)
+			{
+				CellList[i][j]->DrawGameObject(pOut);
+			}
+		}
+		pState->DrawAllPlayers(pOut);
 		string playersInfo = "";
 		pState->AppendPlayersInfo(playersInfo);
 		pOut->PrintPlayersInfo(playersInfo);

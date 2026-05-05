@@ -29,10 +29,16 @@ void SelectCommandAction::Execute()
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 
+	
+	if (pPlayer->GetHealth() <= 0)
+	{
+		pGrid->PrintErrorMessage("Player has no health!");
+		return;
+	}
+
 	int maxToSave = pPlayer->GetHealth();
 	if (maxToSave > MaxSavedCommands)
 		maxToSave = MaxSavedCommands;
-
 
 	if (pPlayer->GetSavedCommandCount() >= maxToSave)
 	{
@@ -40,29 +46,33 @@ void SelectCommandAction::Execute()
 		return;
 	}
 
-
 	int availableCount = pPlayer->GetHealth();
 	if (availableCount > MaxAvailableCommands)
 		availableCount = MaxAvailableCommands;
 
-
 	Command availableCommands[MaxAvailableCommands];
+
 	for (int i = 0; i < availableCount; i++)
 	{
-		int r = rand() % 8 + 1;
-		availableCommands[i] = (Command)r;
+		availableCommands[i] = GetRandomCommand();
 	}
 
 	for (int i = availableCount; i < MaxAvailableCommands; i++)
+	{
 		availableCommands[i] = NO_COMMAND;
+	}
 	Command savedCommands[MaxSavedCommands];
 	int savedCount = pPlayer->GetSavedCommandCount();
 
 	for (int i = 0; i < savedCount; i++)
+	{
 		savedCommands[i] = pPlayer->GetSavedCommand(i);
+	}
 
 	for (int i = savedCount; i < MaxSavedCommands; i++)
+	{
 		savedCommands[i] = NO_COMMAND;
+	}
 
 	pOut->CreateCommandsBar(savedCommands, savedCount, availableCommands, availableCount);
 
@@ -76,15 +86,19 @@ void SelectCommandAction::Execute()
 
 	pPlayer->AddSavedCommand(availableCommands[selectedIndex]);
 
-
 	savedCount = pPlayer->GetSavedCommandCount();
 
 	for (int i = 0; i < savedCount; i++)
+	{
 		savedCommands[i] = pPlayer->GetSavedCommand(i);
+	}
 
 	for (int i = savedCount; i < MaxSavedCommands; i++)
+	{
 		savedCommands[i] = NO_COMMAND;
+	}
 
+	
 	pOut->CreateCommandsBar(savedCommands, savedCount, availableCommands, availableCount);
 }
 

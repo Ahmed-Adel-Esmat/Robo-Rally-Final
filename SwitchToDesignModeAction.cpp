@@ -1,6 +1,11 @@
 #include "SwitchToDesignModeAction.h"
 #include "Grid.h"
 #include "Output.h"
+#include "ApplicationManager.h"
+#include "GameState.h"
+#include "Player.h"
+#include "Cell.h"
+
 
 SwitchToDesignModeAction::SwitchToDesignModeAction(ApplicationManager* pApp) : Action(pApp)
 {
@@ -13,21 +18,33 @@ void SwitchToDesignModeAction::ReadActionParameters()
 
 void SwitchToDesignModeAction::Execute()
 {
-	Grid* pGrid = pManager->GetGrid();
-	Output* pOut = pGrid->GetOutput();
 
-	// 1. Switch the global interface mode to Design Mode
-	UI.InterfaceMode = MODE_DESIGN;
+		Grid* pGrid = pManager->GetGrid();
+		GameState* pState = pManager->GetGameState();
+		Output* pOut = pGrid->GetOutput();
 
-	// 2. Redraw the toolbar with Design Mode buttons
-	pOut->CreateDesignModeToolBar();
+		
+		pGrid->ClearAllObjects();
 
-	// 3. Update the full interface so the grid is redrawn
-	pManager->UpdateInterface();
+		
+		for (int i = 0; i < MaxPlayerCount; i++)
+		{
+			Player* pPlayer = pState->GetPlayer(i);
 
-	///TODO: Add any cleanup needed when leaving Play Mode.
-	pOut->ClearStatusBar();
-	pOut->PrintMessage("Switched to Design Mode. Ready to edit.");
+			if (pPlayer != NULL)
+			{
+				pGrid->UpdatePlayerCell(pPlayer, pGrid->GetStartCell()->GetCellPosition());
+				pPlayer->SetHealth(10);
+				pPlayer->ClearSavedCommands();
+			}
+		}
+		pState->SetFirstPlayer(0);
+		pState->SetCurrentPhase(PHASE_MOVEMENT);
+		UI.InterfaceMode = MODE_DESIGN;
+		pOut->CreateDesignModeToolBar();
+		pManager->UpdateInterface();
+		pOut->PrintMessage("Switched to Design Mode.");
+	
 }
 
 SwitchToDesignModeAction::~SwitchToDesignModeAction()

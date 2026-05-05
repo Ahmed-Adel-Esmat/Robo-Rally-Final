@@ -1,7 +1,10 @@
 #include "ApplicationManager.h"
 #include "SaveGridAction.h" 
 #include "Grid.h"
-
+#include "AddWaterPitAction.h"
+#include "AddDangerZoneAction.h"
+#include "AddAntennaAction.h"
+#include "AddWorkshopAction.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
@@ -140,7 +143,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case LOAD_GRID:
 		pAct = new LoadGridAction(this);
 		break;
-	
+	case ADD_ANTENNA:
+		pAct = new AddAntennaAction(this);
+		break;
+
+	case ADD_WATER_PIT:
+		pAct = new AddWaterPitAction(this);
+		break;
+
+	case ADD_DANGER_ZONE:
+		pAct = new AddDangerZoneAction(this);
+		break;
+
+	case ADD_WORKSHOP:
+		pAct = new AddWorkshopAction(this);
+		break;
 	
 
 	///TODO: Add a case for EACH remaining Play Mode action type

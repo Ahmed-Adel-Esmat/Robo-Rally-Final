@@ -20,19 +20,16 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 	///TODO
 	
-    Output* pOut = pGrid->GetOutput();
-    Input* pIn = pGrid->GetInput();
-
-   
-    pOut->PrintMessage("You have reached a workshop. Repairing... Click to continue...");
-    pIn->GetCellClicked();
-    pOut->ClearStatusBar();
-
     
-    pPlayer->SetHealth(10);
+        if (pPlayer == NULL)
+            return;
 
+        int newHealth = pPlayer->GetHealth() + 2;   
+        if (newHealth > 10)
+            newHealth = 10;
+
+        pPlayer->SetHealth(newHealth);
     
-    pGrid->UpdateInterface(pState);
 }
 
 GameObject * Workshop::Clone() const

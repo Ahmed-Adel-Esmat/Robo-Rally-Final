@@ -18,23 +18,17 @@ void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 
 	///TODO
-    Output* pOut = pGrid->GetOutput();
-    Input* pIn = pGrid->GetInput();
-
-   
-    pOut->PrintMessage("You drowned in a water pit! Resetting to start. Click to continue...");
-    pIn->GetCellClicked();
-    pOut->ClearStatusBar();
-
- 
-    pPlayer->SetHealth(pPlayer->GetHealth() - 3);
-
     
-    CellPosition startPos(NumVerticalCells - 1, 0);  
-    pGrid->UpdatePlayerCell(pPlayer, startPos);
+        if (pPlayer == NULL || pGrid == NULL)
+            return;
 
+        int newHealth = pPlayer->GetHealth() - 3;
+        if (newHealth < 0)
+            newHealth = 0;
+
+        pPlayer->SetHealth(newHealth);
+        pGrid->UpdatePlayerCell(pPlayer, pGrid->GetStartCell()->GetCellPosition());
     
-    pGrid->UpdateInterface(pState);
 }
 
 void WaterPit::Save(ofstream& OutFile)

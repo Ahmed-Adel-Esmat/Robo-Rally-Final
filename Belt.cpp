@@ -5,7 +5,22 @@
 Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
 	this->endCellPos = endCellPos;
-
+	if (!startCellPos.IsValidCell() || !endCellPos.IsValidCell())
+	{
+		position = CellPosition(-1, -1);
+		this->endCellPos = CellPosition(-1, -1);
+	}
+	else if (startCellPos.GetCellNum() == 1)
+	{
+		position = CellPosition(-1, -1);
+		this->endCellPos = CellPosition(-1, -1);
+	}
+	else if (startCellPos.HCell() != endCellPos.HCell() &&
+		startCellPos.VCell() != endCellPos.VCell())
+	{
+		position = CellPosition(-1, -1);
+		this->endCellPos = CellPosition(-1, -1);
+	}
 	///TODO: Do the needed validation
 
 }

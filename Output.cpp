@@ -682,7 +682,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 	if (!cellPos.IsValidCell())
 		return;
 
-	DrawImageInCell(cellPos, "images\\Workshop.jpg", UI.CellWidth / 2, UI.CellHeight / 2);   ///
+	DrawImageInCell(cellPos, "images\\Menu_Workshop.jpg", UI.CellWidth / 2, UI.CellHeight / 2);   ///
 
 }
 

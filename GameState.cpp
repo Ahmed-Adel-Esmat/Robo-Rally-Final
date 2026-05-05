@@ -57,6 +57,10 @@ void GameState::AdvanceCurrentPlayer()
 
 void GameState::SetFirstPlayer(int playerNum)
 {
+	if (playerNum < 0 || playerNum >= MaxPlayerCount)
+		return;
+
+	currPlayerNumber = playerNum;
 	///TODO: Implement this function to set which player goes first this round
 }
 
